@@ -5,7 +5,7 @@ import { account } from "../services/appwrite";
 const ProtectedRoute = ({
   children,
 }: {
-  children: JSX.Element;
+  children: React.ReactNode;
 }) => {
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] =
