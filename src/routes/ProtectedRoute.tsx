@@ -7,7 +7,9 @@ const ProtectedRoute = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
+
   const [authenticated, setAuthenticated] =
     useState(false);
 
@@ -15,6 +17,7 @@ const ProtectedRoute = ({
     const checkAuth = async () => {
       try {
         await account.get();
+
         setAuthenticated(true);
       } catch {
         setAuthenticated(false);
@@ -26,11 +29,16 @@ const ProtectedRoute = ({
     checkAuth();
   }, []);
 
-  if (loading)
-    return <h1 className="p-6">Loading...</h1>;
+  if (loading) {
+    return (
+      <h1 className="p-6">
+        Loading...
+      </h1>
+    );
+  }
 
   return authenticated ? (
-    children
+    <>{children}</>
   ) : (
     <Navigate to="/login" />
   );
